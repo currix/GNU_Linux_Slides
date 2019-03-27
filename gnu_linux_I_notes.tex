@@ -1,0 +1,159 @@
+\documentclass{beamer}
+\usepackage{pgfpages}
+\pgfpagesuselayout{resize to}[a4paper,border shrink=5mm,landscape]
+\setbeameroption{show notes}
+
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+%
+%-------------------------------------------------------
+% INCLUDE PACKAGES
+%-------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{siunitx}
+\newcommand{\gc}{\degreeCelsius}
+\usepackage{tikz}
+%-------------------------------------------------------
+% INCLUDE NOTES
+%-------------------------------------------------------
+%\setbeameroption{show notes}
+
+
+%-------------------------------------------------------
+% INFORMATION IN THE TITLE PAGE
+%-------------------------------------------------------
+
+\title[IntSciProg]{\textbf{Tutorial of GNU/Linux in the console. Module I}}
+
+\subtitle{\textbf{Introduction to Scientific Programming}}
+
+
+\newcommand\RBox[1]{%
+  \tikz\node[draw,rounded corners,align=center,] {#1};%
+}  
+\author[Curro Pérez-Bernal]
+{%
+  \texorpdfstring{
+    % \begin{columns}
+    %   \column{.45\linewidth}
+      \centering
+      \RBox{Curro Pérez-Bernal\\
+        \href{mailto:curropb@uhu.es}{curropb@uhu.es}}
+    % \end{columns}
+    \vspace{0.5cm}
+    \begin{columns}
+      \column{.75\linewidth}
+      \centering
+      \RBox{Integrated Sciences Department --
+        University of Huelva}
+    \end{columns}
+  }
+  {John Doe \& Jane Doe}
+}
+% \author[Jos\'e E. Garc\'{\i}a Ramos]{Jos\'e E. Garc\'{\i}a Ramos}% Your name
+% \institute[DCI-UHU]
+  
+%   \medskip
+%   \textit{curropb@uhu.es} % Your email address
+  
+% \author[Curro P\'erez-Bernal ]{Curro P\'erez Bernal}% Your name
+% \institute[DCI-UHU]
+  
+%   \medskip
+%   \textit{curropb@uhu.es} % Your email address
+
+% there must be an empty line above this line - otherwise some unwanted space is added between the university and the country (I do not know why;( )
+
+\date{\today} % Date, can be changed to a custom date
+
+\titlegraphic{\begin{center}\vspace{-0.5cm}\hspace{0.5cm}\includegraphics[width=0.75\linewidth]{Figs/uhu_ceafmc_fisum_isp.png}\end{center}}
+
+
+%-------------------------------------------------------
+% THE BODY OF THE PRESENTATION
+%-------------------------------------------------------
+
+\begin{document}
+
+%-------------------------------------------------------
+% THE TITLEPAGE
+%-------------------------------------------------------
+
+%{\1% % this is the name of the PDF file for the background
+\begin{frame}[plain,noframenumbering] % the plain option removes the header from the title page, noframenumbering removes the numbering of this frame only
+  \titlepage % call the title page information from above
+\end{frame}%}
+
+
+\begin{frame}{Chapter Outline}{}
+\tableofcontents
+\end{frame}
+
+\include{gnu_linux_I}
+
+%%%%%%%%%
+\end{document}
