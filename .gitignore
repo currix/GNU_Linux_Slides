@@ -1,8 +1,10 @@
 # Created by Currix
-*.aux
-*~
+*.toc
+*.nav
 *.log
+*.snm
+*.vrb
+*.aux
+*.out
+*~
 *dat
-*sgml
-1/
-2/
