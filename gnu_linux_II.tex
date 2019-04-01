@@ -1,0 +1,496 @@
+\section{Creating Folders}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[fragile]{Creating directories with \alert{\texttt{mkdir}}}
+  % -------------------------------------------------------
+  
+  \begin{block}{ Syntax: \alert{\texttt{mkdir}} \emph{folder\_name ...} }
+    
+  {\scriptsize
+      \begin{lstlisting}
+alice@platea:~$ ls
+README  Desktop    Documents  Downloads  
+alice@platea:~$
+alice@platea:~$ mkdir tmp
+alice@platea:~$ ls
+README  Desktop    Documents  Downloads  tmp
+alice@platea:~$ cd tmp
+alice@platea:~/tmp$ 
+      \end{lstlisting}
+  }
+    
+    \begin{columns}[t]
+      \column{.44\textwidth}
+      {\footnotesize \emph{directory\_name} can be
+        given as an \alert{absolute} or a \alert{relative} path. The following three commands are
+        equivalent.}
+      \column{.56\textwidth}
+        \hspace{-3cm}
+      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ mkdir tmp
+alice@platea:~$ mkdir /home/alice/tmp
+alice@platea:~$ mkdir ./tmp
+alice@platea:~$ mkdir ../alice/tmp
+        \end{lstlisting}
+      }
+    \end{columns}
+
+  \end{block}
+  
+  
+  \note{
+    {\tiny
+      
+      Notes Module I
+    }
+  }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Copying Files or Folders}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Copying files with \alert{\texttt{cp}}}
+  % ------------------------------------------------------
+
+
+  \begin{block}{The  \texttt{cp} command copies files and directories}
+    {\footnotesize
+      There are three possible ways of using this command:
+    
+
+      \begin{lstlisting}
+cp [OPTION]... SOURCE DEST
+cp [OPTION]... SOURCE... DIRECTORY
+cp [OPTION]... -t DIRECTORY SOURCE...
+      \end{lstlisting}
+ 
+
+  Usage Examples
+}
+
+  {\scriptsize
+
+  \begin{columns}[T]
+      \column{.44\textwidth}Copy file \texttt{README} to
+      \texttt{README.txt} in the same directory.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ cp README README.txt
+alice@platea:~$ 
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}[T]
+      \column{.44\textwidth} Copy files \texttt{README} and
+      \texttt{README.2} to the user's home directory.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:/tmp$ cp README README.2 ~
+alice@platea:/tmp$ 
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}[T]
+      \column{.44\textwidth} To copy a directory the option
+    \texttt{-r} (recursively) should be used. The example shows how to
+    copy the directory
+    \texttt{\textasciitilde/Images} to the directory \texttt{./tmp}.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ cp -r ~/Images ./tmp
+alice@platea:~$
+        \end{lstlisting}
+%      }
+    \end{columns}
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module I
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Moving Files}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Moving files with \alert{\texttt{mv}}}
+  % ------------------------------------------------------
+
+
+  \begin{block}{The  \texttt{mv} command moves files and directories}
+    {\footnotesize
+      There are three possible ways of using this command:
+    
+
+      \begin{lstlisting}
+mv [OPTION]... SOURCE DEST
+mv [OPTION]... SOURCE... DIRECTORY
+mv [OPTION]... -t DIRECTORY SOURCE...
+      \end{lstlisting}
+ 
+
+  Usage Examples
+}
+
+  {\scriptsize
+
+  \begin{columns}[T]
+      \column{.44\textwidth} Rename file \texttt{README} to
+      \texttt{README.txt} in the same directory.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ mv README README.txt
+alice@platea:~$ 
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}[T]
+      \column{.44\textwidth} Move files \texttt{README} and
+      \texttt{README.2} to the user's home directory.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:/tmp$ mv README README.2 ~
+alice@platea:/tmp$ 
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}[T]
+      \column{.44\textwidth} Move directory
+    \texttt{\textasciitilde/Images} to directory \texttt{./tmp}.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ mv ~/Images ./tmp
+alice@platea:~$
+        \end{lstlisting}
+%      }
+    \end{columns}
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module I
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Deleting Files and Directories}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Deleting folders with \alert{\texttt{rmdir}}}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{The  \texttt{rmdir} command  removes \emph{empty} directories}
+    {\footnotesize
+      \begin{lstlisting}
+rmdir [OPTION]... DIRECTORY...
+      \end{lstlisting}
+ 
+
+  Usage Examples
+}
+
+
+\vspace{-0.3cm}
+{\scriptsize
+
+  \begin{columns}
+      \column{.44\textwidth}  Create directories \texttt{READ0}
+    and  \texttt{READ1} and remove them.
+      \column{.56\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ mkdir READ0 READ1
+alice@platea:~$ ls -d READ0 READ1
+READ0  READ1
+alice@platea:~$ rmdir READ0 READ1
+alice@platea:~$ ls -d READ0 READ1
+ls: cannot access READ0: 
+         No such file or directory
+ls: cannot access READ1: 
+          No such file or directory
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+      \column{.44\textwidth}  The \texttt{rmdir} command only
+    removes empty folders.
+      \column{.56\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ mkdir READ0
+alice@platea:~$ cp .bash_history READ0 
+alice@platea:~$ rmdir READ0
+rmdir: failed to remove `READ0/': 
+               Directory not empty
+alice@platea:~$
+        \end{lstlisting}
+%      }
+    \end{columns}
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module I
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Deleting files (and folders) with \alert{\texttt{rm}}}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{The  \texttt{rm} command  and file deletion}
+    {\footnotesize
+The command \texttt{rm} removes files. By default it does not remove
+directories. Be careful, there does not exist something like an
+\textbf{undelete} command.
+
+\begin{lstlisting}
+rm [OPTION]... FILE...
+\end{lstlisting}
+ 
+
+  Usage Examples
+}
+
+
+\vspace{-0.3cm}
+{\scriptsize
+
+  \begin{columns}
+      \column{.44\textwidth}  Remove files \texttt{README} and
+      \texttt{README.txt}.
+      \column{.56\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ rm README README.txt
+alice@platea:~$ 
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+      \column{.44\textwidth}  Frequently used options.
+      \column{.56\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+-i   prompt before every removal
+-f   ignore nonexistent files, never prompt
+-r   remove directories and 
+     their contents recursively
+        \end{lstlisting}
+%      }
+    \end{columns}
+  }
+  {\footnotesize
+   It is important to be very
+    careful when using \alert{\texttt{rm -r}} as it is easy to wipe out
+    important files or even an entire system.\\ \emph{With great power comes
+    great responsability}...}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module I
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Saving keystrokes...}{\emph{Programmers can be lazy.} Larry Wall}
+%-------------------------------------------------------
+  \vspace{-0.3cm}
+  \begin{block}{Saving on console typing}
+    {\footnotesize Several key combinations save on typing, in particular \texttt{bash-completion} ``magic'' key \alert{\texttt{TAB}}.
+    
+    
+    Usage Examples:
+  }
+  
+{  \scriptsize
+  \begin{itemize}
+\item The \texttt{TAB} key is a very useful help. It autocompletes any command or file name, if there is only one possible option,  or gives a list of possible options. (``magic'' key).\pause
+\item The command \texttt{history} provides a list of typed commands.\pause
+\item The user can navigate in the \texttt{history} record with the \texttt{up}-arrow (also \texttt{CTRL-p}) and the \texttt{down}-arrow (also \texttt{CTRL-n}).\pause
+\item Selecting text, the key combinations \texttt{Ctrl-Insert} or \texttt{Shift-Ctrl-c} (copy) and \texttt{Shift-Insert} or \texttt{Shift-Ctrl-v} (paste).\pause
+\item Selecting text in a console and clicking on the second mouse button yanks this text in the prompt.
+\end{itemize}
+
+}  
+  \end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module I
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Using \alert{globbing}}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{File wildcards}
+    {\footnotesize
+File wildcards save typing, affecting several files simultaneously. The character \alert{\texttt{*}} matches any string, of any length.
+
+\begin{tabular}{|l|l|}
+\hline
+\texttt{*} & Matches any string, of any length \\
+\texttt{bla*} & Matches any string beginning with bla \\
+\texttt{*x*} & Matches any string with an \texttt{x} at any position. \\
+\texttt{*dat} & Matches any string finishing with \texttt{dat} \\
+\hline
+\end{tabular}
+
+  Usage Examples
+}
+
+
+\vspace{-0.3cm}
+{\scriptsize
+
+  \begin{columns}
+      \column{.44\textwidth} Move files ending in \texttt{.txt} in the working directory to the \texttt{/tmp} directory.
+      \column{.56\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ mv ./*.txt /tmp
+alice@platea:~$ 
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+      \column{.44\textwidth}   Copy files beginning with \texttt{output} and ending with \texttt{.dat} to the user's home subdirectory \texttt{Results}.
+      \column{.56\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ cp output*.dat ~/Results
+alice@platea:~$
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+      \column{.44\textwidth}  Delete all files in the current directory beginning with \texttt{a} and ending with \texttt{.ps}.
+      \column{.56\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ rm ./a*.ps
+alice@platea:~$
+        \end{lstlisting}
+%      }
+    \end{columns}
+  }
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module I
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Using spaces and special characters in file names}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Spaces and special characters}
+    {\footnotesize
+The use of spaces in filenames is allowed, though it is discouraged. Special characters use is even more controversial. Take into account that \alert{space} is the separator between arguments in \texttt{UNIX}.
+
+Files differing on the use of upper and lowercase letters are \alert{different}.
+
+
+
+  Usage Examples
+}
+
+
+%\vspace{-0.3cm}
+{\scriptsize
+
+  \begin{columns}
+      \column{.3\textwidth}Remove a file called \texttt{``my notes.txt''}.
+      \column{.7\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ rm my\ notes.txt
+alice@platea:~$ 
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+      \column{.3\textwidth}    Removing a file with spaces. Check the unexpected result.
+      \column{.7\textwidth}
+%      {\scriptsize
+% alice@platea:~$ ls 
+% alice@platea:~$ file.txt text.txt
+      \begin{lstlisting}
+alice@platea:~$ rm this is a text.txt
+rm: cannot remove `this': No such file or directory
+rm: cannot remove `is': No such file or directory
+rm: cannot remove `a': No such file or directory
+alice@platea:~$ rm ``this is a text.txt''
+                OR
+alice@platea:~$ rm this\ is\ a\ text.txt
+alice@platea:~$
+        \end{lstlisting}
+%      }
+    \end{columns}
+  }
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module I
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
