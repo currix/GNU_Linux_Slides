@@ -1,0 +1,702 @@
+\section{Text Editors}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}{What's a text editor?}{\emph{Writing is its own reward} -- Henry Miller}
+  % -------------------------------------------------------
+  
+  \begin{block}{ \alert{Text editors} are used to create \emph{plain text} files}
+    
+    {\small
+      \begin{itemize}
+      \item They should not get mixed up with \alert{\textbf{word processors}}.
+      \item Text editors only use characters in the selected character set, which normally is ASCII (American Standard Code for Information Interchange). 
+      \item This is their main difference with (WYSIWYG) word processors that   generally include application specific control characters beyond the character set. 
+      \item There is a large number of available text editors in \texttt{GNU/Linux} distributions.
+      \end{itemize}
+      }
+  \end{block}
+  
+  \note{
+    {\tiny
+      
+      Notes Module III
+    }
+  }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Suggested \texttt{GNU/Linux} text editors}
+  % -------------------------------------------------------
+  
+  \begin{block}{Some possible text editors options in \texttt{GNU/Linux}}
+    
+    {\small
+      \begin{description}
+      \item[emacs] {\footnotesize IMHO this is \emph{the editor}, either for
+          preparing a \LaTeX document, a source code of a program (many
+          plugins to facilitate programmer tasks) or to define macros to
+          make complicate operations with your data files. You can even read
+          mail, news or get help from a particular psychoanalist...}
+      \item[vi/vim] {\footnotesize The original \texttt{UNIX} text editor (with \texttt{ed} permission). The main pro is that it can be found in any \texttt{UNIX} computer, the main con is a queer interface that can take some time to get used to (this point has improved with \texttt{vim}). It is good to know some basic \texttt{vi} usage for system administration.}
+      \item[nano] {\footnotesize Simple and intuitive text editor that could replace \texttt{vi} for those that can not stand \texttt{vi} interface.}
+
+      \item[Other options] {\footnotesize aee, jed, sublime, pluma, gedit, e3, eclipse, editra, elvis, fte, xemacs...} 
+      \end{description}
+     }
+  \end{block}
+  \note{
+    {\tiny
+      
+      Notes Module III
+    }
+  }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Basic Process Management}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Checking System Processes}
+  % ------------------------------------------------------
+
+
+  \begin{block}{The \alert{\texttt{ps}} command}
+    {\footnotesize
+ Each of the tasks that a \texttt{UNIX} computer is processing
+  at any moment is associated to what is called a \alert{process}
+  with a unique \alert{PID} (process identification number).
+
+  The \texttt{ps} command displays current system processes. 
+
+    }
+
+  {\scriptsize
+
+  \begin{columns}
+      \column{.44\textwidth}The bareword \texttt{ps} command only displays the 
+  processes associated to a particular session (discussed
+  on next topic).
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ ps
+  PID TTY          TIME CMD
+ 2530 pts/3    00:00:01 bash
+ 2626 pts/3    00:01:37 emacs
+ 2683 pts/3    00:00:09 evince
+ 2687 pts/3    00:00:12 evince
+ 3210 pts/3    00:00:00 ps
+alice@platea:~$ 
+        \end{lstlisting}
+%      }
+    \end{columns}
+  }
+  {\footnotesize
+      The \alert{\texttt{ps}} command has many options (see
+  \texttt{man ps}). To
+  obtain a list in a long format of all the existing processes or
+  tasks the appropriate options are \alert{texttt{ps -aux}}. An alternative way
+  of presenting process information is accomplished with the command
+  \texttt{pstree} that emphasizes the relation among processes.
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Job Control Under \texttt{UNIX}}
+  % ------------------------------------------------------
+
+
+  \begin{block}{Sending processes to the background with  \alert{\texttt{\&}}}
+    {\footnotesize
+    If a program (e.g.\ a text editor) is launched from a console, the
+console is inactive until the program finishes. This can be avoided if
+the program is backgrounded, adding the ampersand character at the end
+of its activation statement.
+
+
+      \begin{lstlisting}
+alice@platea:~$  emacs filedit.txt &
+alice@platea:~$ 
+      \end{lstlisting}
+ 
+}
+{\scriptsize
+
+  \begin{columns}
+      \column{.44\textwidth}A program in foreground can be
+      stopped and backgrounded. The conventional stop key combination
+      is \alert{\texttt{CTRL-Z}}
+      and, once stopped, the program is
+      backgrounded with the \alert{\texttt{bg}} command.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ xterm
+^Z
+[1]+  Stopped                 xterm
+alice@platea:~$ bg
+[1]+ xterm &
+alice@platea:~$  jobs
+[1]+  Running                 xterm &
+alice@platea:~$
+        \end{lstlisting}
+%      }
+    \end{columns}
+  }
+      {\footnotesize
+ The command
+      \alert{\texttt{jobs}} gives a list of backgrounded processes in a session.}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Killing processes}{\emph{Thou know'st 'tis common; all that lives must die...}, WS, Hamlet.}
+  % ------------------------------------------------------
+
+
+  \begin{block}{Sending signals to processes with  \alert{\texttt{kill}}}
+    {\footnotesize
+The \alert{\texttt{kill}} command is intended, in general, to control
+processes sending \emph{signals} to them, and in particular to terminate them. The default signal is \texttt{TERM}.
+
+
+      \begin{lstlisting}
+kill [ -signal | -s signal ] pid [...]
+      \end{lstlisting}
+ 
+}
+{\scriptsize
+
+  \begin{columns}
+      \column{.44\textwidth} A program in foreground can
+      be terminated with the key combination \alert{\texttt{CTRL-C}} or stopped
+      with \alert{\texttt{CTRL-Z}}. These are two \texttt{kill}
+      instances. A backgrounded program can be managed with the
+      \texttt{kill} command.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ sleep 1000 &
+[1] 6254
+alice@platea:~$ xterm &
+[2] 6255
+alice@platea:~$ ps
+  PID TTY          TIME CMD
+ 6039 pts/3    00:00:00 bash
+ 6254 pts/3    00:00:00 sleep
+ 6255 pts/3    00:00:00 xterm
+ 6308 pts/3    00:00:00 ps
+alice@platea:~$ kill 6254
+[1]-  Terminated         sleep 1000
+        \end{lstlisting}
+%      }
+    \end{columns}
+  }
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Keeping track of processes}
+  % ------------------------------------------------------
+  \begin{block}{The \alert{\texttt{top}} and \alert{\texttt{htop}} commands}
+    {\footnotesize
+ The command \alert{\texttt{top}}   provides  a dynamic real-time view of a running
+       system. The previously described process management tasks can be performed
+       using this program or its newer replacement \alert{\texttt{htop}}.}
+
+{\tiny
+         \begin{lstlisting}
+           top - 16:51:06 up 18:23,  4 users,  load average: 0.15, 0.19, 0.12
+Tasks: 164 total,   1 running, 163 sleeping,   0 stopped,   0 zombie
+Cpu(s): 41.0%us, 8.1%sy, 0.0%ni, 50.3%id, 0.7%wa, 0.0%hi, 0.0%si, 0.0%st
+Mem:   1016428k total,   918596k used,    97832k free,     9960k buffers
+Swap:  1951740k total,   366252k used,  1585488k free,   381028k cached
+
+  PID USER PR NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND            
+ 1508 bob  20  0  308m  32m 9696 S  38  3.3  67:52.80 compiz             
+ 1627 bob  20  0 88036  18m 6628 S  13  1.8  17:43.08 unity-panel-ser    
+  955 root 20  0  188m  13m 4072 S  12  1.4  27:09.33 Xorg               
+ 1447 bob  20  0  6944 2588  856 S  11  0.3  14:11.89 dbus-daemon        
+ 1698 bob  20  0 50700 1244  900 S   4  0.1   5:22.13 indicator-appli    
+ 1532 bob  20  0  216m  80m 9320 S   4  8.1   6:35.24 nm-applet          
+ 5211 bob  20  0  173m  17m   9m S   2  1.7  27:43.28 chrome             
+      \end{lstlisting}
+    } {\footnotesize Pressing \alert{\texttt{h}} you get help on
+      \texttt{top}. To leave the program press \alert{\texttt{q}}. The
+      \texttt{htop} command can be installed in \texttt{Mint}. It has
+      a fancier and more modern interface with new features.
+
+  }
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Redirection in Unix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Command Output Redirection}
+  % ------------------------------------------------------
+  \begin{block}{Redirecting \alert{\texttt{STDOUT}}}
+    {\footnotesize Any command output is sent to the standard output
+      (\texttt{STDOUT}) which by default is the screen. The output can be sent to a file using \alert{\texttt{>}} and
+\alert{\texttt{>>}}, the redirection commands.
+
+  Usage Examples
+}
+
+  {\scriptsize
+
+  \begin{columns}
+      \column{.44\textwidth} Saving the contents of the current directory into a file called \texttt{file\_list.txt}.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+      {\tiny
+        \begin{lstlisting}
+alice@platea:~$ ls
+Downloads  nohup.out
+alice@platea:~$ ls > file_list.txt
+alice@platea:~$ ls
+Downloads  file_list.txt nohup.out 
+alice@platea:~$
+        \end{lstlisting}
+      }
+    \end{columns}
+  \begin{columns}
+      \column{.44\textwidth}  A simple text file can be written combining the
+  \texttt{cat} command and redirection.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+      {\tiny
+        \begin{lstlisting}
+alice@platea:~$ cat > output.txt
+Write something here...
+and press CTRL-D to exit
+alice@platea:~$ ls o*txt
+output.txt
+        \end{lstlisting}
+      }
+    \end{columns}
+  \begin{columns}
+      \column{.44\textwidth}  The symbol \alert{\texttt{>>}} appends the command output to the end of the file, instead of creating a new file deleting the old one.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+      {\tiny
+        \begin{lstlisting}
+alice@platea:~$ cat l1.txt > out.txt
+alice@platea:~$ cat l2.txt l3.txt >> out.txt
+        \end{lstlisting}
+      }
+    \end{columns}
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Command Input Redirection}
+  % ------------------------------------------------------
+
+
+  \begin{block}{Redirecting  \alert{\texttt{STDIN}}}
+    {\footnotesize
+      Command input is loaded from \alert{\texttt{STDIN}}, the standard input, which by default is the keyboard. The standard input can be redefined using \alert{\texttt{<}}.
+
+
+}
+{\scriptsize
+
+  \begin{columns}
+      \column{.44\textwidth}This is an example of input redirection using the \texttt{sort} command. The file \texttt{list.txt} contains \texttt{\{ana, bob, alice, bara\}}.
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ sort < list.txt
+alice
+ana
+bara
+bob
+alice@platea:~$
+       \end{lstlisting}
+%      }
+    \end{columns}
+  }
+    {\footnotesize
+       Input and output redirection can be combined.
+{\scriptsize
+      \begin{lstlisting}
+alice@platea:~$ sort < list.txt > sorted.txt
+alice@platea:~$ cat sorted.txt
+alice
+ana
+bara
+bob
+      \end{lstlisting}
+ }
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Advanced Redirection}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Managing \alert{\texttt{STDERR}}}
+    {\footnotesize
+ Apart from \alert{\texttt{STDIN}} -file descriptor (FD) 0- and \alert{\texttt{STDOUT}} -FD 1- also \alert{\texttt{STDERR}} -FD 2- can be considered. File descriptors are integer numbers that uniquely represents an opened file in an OS.
+
+ \alert{\texttt{STDERR}} can be redefined using \alert{\texttt{2>}} while \alert{\texttt{1>}} corresponds to  \alert{\texttt{STDOUT}}.
+
+  Usage Examples
+}
+
+
+\vspace{-0.3cm}
+{\scriptsize
+
+  \begin{columns}
+      \column{.44\textwidth} This is an example of output redirection using the \texttt{ls} command.
+      \column{.56\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ ls > lsfile 2> err_lsfile
+alice@platea:~$
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+    \column{.44\textwidth}  \texttt{STDOUT} and \texttt{STDERR} can be combined using the order \alert{\texttt{2>\&1}} like in the given examples. Multiple redirections are evaluated left to right, thus these two statements are not equivalent.
+    \column{.56\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ ls > lsfile 2>&1 
+alice@platea:~$ ls 2>&1  > lsfile 
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+    \column{.44\textwidth} A shortcut to combine \texttt{STDOUT} and \texttt{STDERR} is available: \alert{\texttt{STDERR}}. Appending is possible too.
+    \column{.56\textwidth}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ ls &> lsfile
+alice@platea:~$ ls &>> lsfile
+        \end{lstlisting}
+%      }
+    \end{columns}
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Command Connection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Connecting commands output and input}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Using UNIX pipes (\alert{\texttt{|}})}
+    {\footnotesize
+      The output of a command can be connnected
+  (\emph{piped}) as the entry of a new command. This is achieved with
+  a pipe, marked with a vertical bar character, \alert{\texttt{|}}.
+
+  Usage Examples
+}
+
+
+\vspace{-0.3cm}
+{\scriptsize
+  \begin{columns}
+      \column{.4\textwidth}Pipes allow to reduce the number of needed commands and avoid creating temporary files using pipes.
+      \column{.6\textwidth}
+        \begin{lstlisting}
+alice@platea:~$ who | sort
+alice pts/1  2012-03-17 19:30 (dynip.net)
+bob   pts/18 2011-12-01 10:13 (tyrell)
+root  pts/2  2011-09-16 12:56 (rachel)
+root  pts/5  2011-12-22 13:36 (rick)
+root  tty1   2012-01-27 12:57
+alice@platea:~$ 
+        \end{lstlisting}
+    \end{columns}
+
+    You can pipe several commands.
+
+        \begin{lstlisting}
+alice@platea:~$ ps aux | sort -r -k 5 |  less
+USER   PID %CPU %MEM    VSZ   RSS TTY   STAT START  TIME COMMAND
+root 16005 0.5  1.1  98024 47032 pts/1  Sl+  12:31  0:06 aptitude
+alice 2697 0.0  0.1  84240  4328 ?      S    12:02  0:00 google-chrome
+alice 2806 0.0  0.0   7816  3652 ?      S    12:02  0:00 xconsole 
+root  2258 0.0  0.0   7772  3912 ?      Ss   12:02  0:00 NetworkManager
+alice@platea:~$ 
+        \end{lstlisting}
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Packaging and Compressing Files}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{File Compression and Expansion}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Using \alert{\texttt{gzip}}/\alert{\texttt{gunzip}}}
+    {\footnotesize Files have to be often compressed to save disk
+  space. Depending on the file nature, the gaining of space can be
+  huge. One of the most commonly used file compressors (decompressors)
+  in \texttt{GNU/Linux} is \alert{\texttt{gzip}} (\alert{\texttt{gunzip}}). The standard suffix of files compressed with
+  \texttt{gzip} is \alert{\texttt{.gz}}.
+
+  Usage example  }
+
+
+
+{\scriptsize
+        \begin{lstlisting}
+alice@platea:~/FSTS/tmp$ ls -lR /usr/share > f_1.txt
+alice@platea:~/FSTS/tmp$ ls -lR /usr/lib > f_2.txt
+alice@platea:~/FSTS/tmp$ ls -sh  f_*txt
+ 11M f_1.txt  1.8M f_2.txt
+alice@platea:~/FSTS/tmp$ gzip f_*
+alice@platea:~/FSTS/tmp$ ls -sh f_*
+1.3M f_1.txt.gz  232K f_2.txt.gz
+alice@platea:~$ 
+        \end{lstlisting}
+
+
+There are many other possible file compressors in
+  \texttt{GNU/Linux}: \texttt{zip/unzip}, \texttt{rar/unrar},
+  \texttt{bzip2/bunzip2}, etc...
+
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Creating a tarball with \alert{\texttt{tar}}}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Packaging files with \alert{\texttt{tar}}}
+    {\footnotesize Sometimes it is convenient to package several files and directories
+  in a single file (a \emph{tarball} with suffix \alert{\texttt{tar}}) mostly for file sharing and
+  transmission.
+
+  The  \alert{\texttt{tar}} command syntax is \alert{\texttt{ tar cvf} \emph{file.tar} \texttt{file1 [file2 ...]}}.
+
+   To check
+  the contents of a tarball use the \alert{\texttt{tf}} options: \alert{\texttt{tar tf} file.tar} 
+
+  Usage example  }
+
+
+
+{\scriptsize
+        \begin{lstlisting}
+alice@platea:~/FSTS/tmp$ ls -lR /usr/share > file_1.txt
+alice@platea:~/FSTS/tmp$ ls -lR /usr/lib > file_2.txt
+alice@platea:~/FSTS/tmp$ tar cvf tar_test.tar file*txt 
+file_1.txt
+file_2.txt
+alice@platea:~/FSTS/tmp$ ls -sh file* tar_test.tar 
+11M file_1.txt  1.8M file_2.txt  13M tar_test.tar
+alice@platea:~/FSTS/tmp$ tar tf tar_test.tar 
+file_1.txt
+file_2.txt
+alice@platea:~/FSTS/tmp$
+        \end{lstlisting}
+
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Extracting the tarball contents}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Packaging files with \alert{\texttt{tar}}}
+    {\footnotesize To extract files from a tarball the syntax is:
+  \alert{\texttt{tar xvf}} \emph{file.tar} 
+
+  Usage example  }
+
+
+
+{\footnotesize
+        \begin{lstlisting}
+alice:~/FSTS/tmp$ mkdir testtar
+alice:~/FSTS/tmp$ cd testtar
+alice:~/FSTS/tmp/testtar$ tar xvf ../tar_test.tar 
+file_1.txt
+file_2.txt
+alice:~/FSTS/tmp/testtar$ ls -hs
+total 13M
+ 11M file_1.txt  1.8M file_2.txt
+        \end{lstlisting}
+
+}
+{\footnotesize Remember that the files are unpacked to the current
+  directory where the command \texttt{tar} is being executed.}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Compressing and Packing in one go}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Packaging and compressing files with \alert{\texttt{tar}}}
+{\footnotesize
+    Files can be simultaneously packaged and compressed. In
+  such case the standard suffix is \alert{\texttt{.tar.gz}} or
+  \alert{\texttt{.tgz}}. \\
+To create a compressed tarball: \texttt{\alert{tar czvf}} \emph{file.tgz} \texttt{file1 [file2 ...]} \\
+To check
+  the contents of a tgz file: \texttt{\alert{tar tzf}}
+  \emph{file.tgz}\\
+To extract
+  the contents of a tgz file: \texttt{\alert{tar xzvf}}
+  \emph{file.tgz}
+}
+  
+\vspace{0.2cm}
+{\footnotesize
+        \begin{lstlisting}
+alice:~/FSTS/tmp$ tar czvf tar_test.tgz file*txt 
+file_1.txt
+file_2.txt
+alice:~/FSTS/tmp$ ls -sh file* tar_test.tgz 
+11M file_1.txt  1.8M file_2.txt  1.5M tar_test.tgz
+alice:~/FSTS/tmp$ tar tzf tar_test.tgz 
+file_1.txt
+file_2.txt
+alice:~/FSTS/tmp$
+
+        \end{lstlisting}
+
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

@@ -2,7 +2,7 @@ LATEX = pdflatex
 PREFIX = gnu_linux
 #
 # Default Chapter. Invoke as "make directive CHAPTER=X" to compile other chapters
-CHAPTER = II
+CHAPTER = III
 #
 .PHONY:	all clean
 all:	presentation dual notes handouts
