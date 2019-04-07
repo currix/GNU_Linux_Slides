@@ -1,0 +1,602 @@
+\section{System Statistics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,fragile]{System Statistics: Disk Usage}
+  % ------------------------------------------------------
+
+
+  \begin{block}{The \alert{\texttt{du}} and \alert{\texttt{df}} commands}
+    {\footnotesize
+The \alert{\texttt{du}} and \alert{\texttt{df}} commands give information on disk usage on the system.    }
+
+  {\scriptsize
+
+  \begin{columns}
+      \column{.6\textwidth} The bareword \alert{\texttt{du}} commmand displays the
+  disk usage of the specified files and
+of each subdirectory (of directory arguments). Using the options
+  you can know the size of your disk account or of a particular directory.
+      \column{.4\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ du .bash*
+4	.bash_logout
+4	.bashrc
+alice@platea:~$ du -hs .
+10G     .
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+      \column{.3\textwidth}The \alert{\texttt{df}} command displays the
+filesystem disk space  usage for all disks or for a particular system device.
+      \column{.7\textwidth}
+        \hspace{-3cm}
+        {\tiny
+        \begin{lstlisting}
+alice@platea:~$ df -h
+Filesystem  Size  Used Avail Use% Mounted on
+/dev/sda3    56G   23G   30G  44% /
+tmpfs       2.0G     0  2.0G   0% /lib/init/rw
+udev        2.0G  284K  2.0G   1% /dev
+tmpfs       2.0G  284K  2.0G   1% /dev/shm
+/dev/sda6   134G  7.5G  120G   6% /home
+/dev/sda4   2.8G   71M  2.6G   3% /tmp
+/dev/sda5   2.8G  702M  2.0G  27% /var
+/dev/sdb2   202G   15G  178G   8% /media/usbdisk
+alice@platea:~$ 
+        \end{lstlisting}
+      }
+    \end{columns}
+  }
+
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module IV
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Info on User Statistics (I)}
+  % ------------------------------------------------------
+
+
+  \begin{block}{The \alert{\texttt{last}} and \alert{\texttt{uptime}} commands}
+    {\footnotesize
+   The \alert{\texttt{last}} command shows a listing of last logged in users taken from \texttt{/var/log/wtmp}.
+
+   {\tiny
+      \begin{lstlisting}
+alice@platea:~$ last
+alice  pts/11   deckard.uhu. Mon Apr  9 18:10   still logged in   
+migue  pts/11   pris.uhu.es  Mon Apr  9 09:47 - 14:20  (04:33)    
+migue  pts/11   pris.uhu.es  Mon Apr  9 09:46 - 09:46  (00:00)    
+pepe   pts/11   1.red-5-37.d Wed Apr  4 21:39 - 22:02  (00:23)    
+adri   pts/11   85.136.191.d Wed Apr  4 08:59 - 11:13  (02:14)    
+ramon  pts/14   144.red-48-7 Tue Apr  3 18:19 - 18:53  (00:33)    
+web    pts/11   144.red-48-7 Tue Apr  3 18:19 - 18:53  (00:34)    
+
+wtmp begins Tue Apr  3 18:19:07 2018
+alice@platea:~$ 
+      \end{lstlisting}
+ }
+   The \alert{\texttt{uptime}} command tells the current time, how long the system
+      has been running, how many users are currently logged on, and
+      the system load averages for the past 1, 5, and 15 minutes..
+
+
+   {\tiny
+      \begin{lstlisting}
+alice@platea:~$ uptime
+ 18:10:12 up 207 days, 3:24, 8 users, load average: 0.49, 0.53, 0.40
+alice@platea:~$
+      \end{lstlisting}
+    } 
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module IV
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Info on User Statistics (II)}
+  % ------------------------------------------------------
+
+  \vspace{-0.2cm}
+  \begin{block}{The \alert{\texttt{who}} and \alert{\texttt{w}} commands}
+    {\footnotesize
+   The bareword \alert{\texttt{who}} command shows information about the users currently logged on.
+   
+   {\tiny
+      \begin{lstlisting}
+alice@platea:~$ who
+alice     tty7     2012-04-18 09:59 (:0)
+alice    pts/0     2012-04-18 10:00 (:0.0)
+randolph pts/1     2012-04-18 21:06 (atena.us.es)
+alice    pts/4     2012-04-18 17:32 (:0.0)
+bob      pts/6     2012-04-20 09:01 (platea.uhu.es)
+alice@platea:~$
+      \end{lstlisting}
+ }
+   The \alert{\texttt{w}} command      shows information about the users currently logged, the current
+    time, the system load, and about what are they currently doing.
+
+
+   {\tiny
+      \begin{lstlisting}
+alice@platea:~$ w
+ 09:17:42 up 1 day, 23:18, 12 users,  load average: 0.00, 0.09, 0.10
+USER    TTY     FROM     LOGIN@   IDLE   JCPU   PCPU WHAT
+alice   tty7    :0       Wed09   47:18m  9:20m  0.02s xinitrc 
+alice   pts/0   :0.0     Wed10   39:46m  8.50s  7.95s ssh tyrell
+alice   pts/1   :0.0     Wed13   12:31m  3:53   0.00s less annual.dat
+alice   pts/3   :0.0     Wed17   39:45m 42.75s 42.36s ssh rick
+alice   pts/5   :0.0     09:01    0.00s  9.87s  0.00s w
+alice   pts/9   :0.0     Thu16   16:26m 36.14s  5:34  xfce4-terminal
+alice   pts/11  :0.0     Thu19   14:00m  2:05   2:04  soffice.bin
+webgem  pts/8   kard.uhu 09:13    3:45   0.01s  0.01s -bash
+alice@platea:~$ 
+      \end{lstlisting}
+    } 
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module IV
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Filesystem Security}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{UNIX File Permissions}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Definition of File Permissions}
+    {\footnotesize
+    The access rights on files can be checked with the command
+\alert{\texttt{ls -l}}.}
+
+  \begin{center}
+    \includegraphics[angle=0,width=0.75\linewidth]{./Figs/permissions.png}
+
+  \end{center}
+{\scriptsize The permissions, or access rights, and are taken as
+  three groups of 3 symbols, affecting the \alert{\emph{file owner}}, \alert{\emph{group member}},
+  and \alert{\emph{everyone else}}. 
+
+ The symbols have different meanings if they apply
+  to files and directories
+
+\begin{description}
+\item[r] permission to read file / list files in dir 
+\item[w] permission to modify/delete file / remove, rename, or create files in dir 
+\item[x] permission to execute file / enter, run a search or execute files in dir 
+\end{description}
+}
+
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module IV
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Changing File Permissions}{\emph{Thou know'st 'tis common; all that lives must die...}, WS, Hamlet.}
+  % ------------------------------------------------------
+  \vspace{-0.3cm}
+  \begin{block}{The  \alert{\texttt{chmod}} command}
+    {\footnotesize
+The  \alert{\texttt{chmod}} command makes changes on file permissions,
+also called file mode bits. The syntax of the command is
+
+      \begin{lstlisting}
+chmod [ugoa...][[+-=][perms...]...] FILE ...
+      \end{lstlisting}
+ 
+Usage Examples}
+{\scriptsize
+
+  \begin{columns}
+      \column{.5\textwidth}Remove write and read permissions to group and other users.
+      \column{.5\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+chmod og-rw list_1
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+      \column{.5\textwidth}Give execute permission to the file owner.
+      \column{.5\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+chmod u+x list_2
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+      \column{.5\textwidth}Give execute permission to all users.
+      \column{.5\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+chmod a+x li_3 li_4
+        \end{lstlisting}
+%      }
+    \end{columns}
+  \begin{columns}
+      \column{.5\textwidth}Give group users read and write permissions and remove execute permission.
+      \column{.5\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+chmod g=rw list_4
+        \end{lstlisting}
+%      }
+    \end{columns}
+  }
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module IV
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Unix \texttt{Bash} Shell Customization}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{\texttt{Bash} Shell Variables}
+  % ------------------------------------------------------
+  \begin{block}{Defining and Exporting Variables in \texttt{Bash}}
+    {\footnotesize 
+Variables are
+parameters that you can create and/or update yourself. Variable names or identifiers consist only of letters, digits and underscores; beginning with a letter or an underscore.
+
+To store \texttt{value} in a variable named \texttt{varname }the following syntax is used:
+
+        \begin{lstlisting}
+varname=value
+        \end{lstlisting}
+
+To access data stored in a variable we proceed to
+  parameter expansion using the special character \alert{\texttt{\$}} as
+  in the following example.
+
+
+        \begin{lstlisting}
+alice@platea:~$ foo=bar
+alice@platea:~$ echo "foo is $foo..."
+foo is bar
+\end{lstlisting}
+%$
+
+The \texttt{Bash} shell provides automatically a series
+of variables called \alert{\emph{environment variables}} that affect the user session and
+can be customized.}      
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module IV
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{\texttt{Bash} Environment Variables}
+  % ------------------------------------------------------
+\vspace{-0.25cm}  \begin{block}{\alert{Global} and \alert{Local} environment variables}
+    {\footnotesize
+      Environment variables modify important aspects of the interaction
+  between the user and the shell. The \alert{\texttt{printenv}} command
+  displays them.}
+
+    {\scriptsize
+  \alert{Global} variables are available in all shell sessions and \alert{local} variables are only available in the currently executing shell and will be lost once the user exits the session.
+
+Some of the more important environment variables are the following
+\begin{description}
+\item[HOME] The current user's home directory, the default for the cd built-in. The value of this variable is also used by tilde expansion.
+\item[PATH] A colon-separated list of directories in which the shell looks for commands.
+\item[PS1] The primary prompt string.
+\item[HISTFILE] The name of the file to which the command history is
+  saved. The default value is \texttt{\textasciitilde/.bash\_history}.
+\item[HISTFILESIZE] The maximum number of lines contained in the history file, defaults to 500.
+\end{description}
+}
+{\tiny
+  \begin{columns}
+      \column{.44\textwidth}The redefinition of one of this variables is done as in
+  the following example
+      \column{.56\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+alice@platea:~$ echo $HISTSIZE
+500
+alice@platea:~$ export HISTSIZE=1000
+alice@platea:~$ echo $HISTSIZE
+1000
+       \end{lstlisting}%$
+    \end{columns}
+  }
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+  Both local and global variables are case sensitive and usually capitalised. According to a convention, local variables should be kept lowercase and global variables should be kept uppercase. Although this is just a convention and you are free to keep any name for both local and global variables. A variable name cannot start with a number and should only contain characters in the beginning.
+
+Source:  https://linuxhint.com/bash-environment-variables/
+  
+Notes Module IV
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{\texttt{Bash} User Configuration Files}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{The \alert{\texttt{\textasciitilde/.bashrc}} config file}
+    {\footnotesize
+System and user files that give initial values to enviroment vars and can be used to tune
+  the shell behavior. The most used file nowadays is \alert{\texttt{\textasciitilde/.bashrc}}. An
+  example is shown below.
+}
+
+{\scriptsize Other possible configuration files are
+  \alert{\texttt{\textasciitilde/.bash\_login}},
+  \alert{\texttt{\textasciitilde/.bash\_profile}}, and  \alert{\texttt{\textasciitilde/.profile}}.
+}
+
+
+\vspace{-0.1cm}
+{\tiny
+        \begin{lstlisting}
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+# append to the history file, don't overwrite it
+shopt -s histappend
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+        \end{lstlisting}%$
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module IV
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Handy Commands}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Looking for Files}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Using the \alert{\texttt{find}} command}
+    {\footnotesize
+The \alert{\texttt{find}} command allows to search for files according to different criteria. The syntax of the command is
+
+
+        \begin{lstlisting}
+find [-H] [-L] [-P] [-Olevel] [path] [expression]
+        \end{lstlisting}
+
+  Usage Examples
+}
+
+
+\vspace{0.1cm}
+{\scriptsize
+  \begin{columns}
+      \column{.4\textwidth}Find all files with \texttt{txt} suffix in the current directory and its subdirectories.
+      \column{.6\textwidth}
+        \begin{lstlisting}
+find ./ -name "*.txt"
+        \end{lstlisting}
+    \end{columns}
+ \begin{columns}
+      \column{.4\textwidth}Find files whose name first character is "c" or "C".
+      \column{.6\textwidth}
+        \begin{lstlisting}
+find ./ -iname "c*"
+        \end{lstlisting}
+    \end{columns}
+ \begin{columns}
+      \column{.4\textwidth}Find files in the current folder that are newer than \texttt{filename}.
+      \column{.6\textwidth}
+        \begin{lstlisting}
+find ./ -maxdepth 1 -newer filename
+        \end{lstlisting}
+    \end{columns}
+ \begin{columns}
+      \column{.4\textwidth}Find bob user files that are under his home directory and with  group and user write permissions.
+      \column{.6\textwidth}
+        \begin{lstlisting}
+find ~ -user bob -maxdepth 2 \
+-perm -u=w,g=w
+        \end{lstlisting}
+    \end{columns}
+}  
+  \end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module IV
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Looking into File Contents}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Using the \alert{\texttt{grep}} command}
+    {\footnotesize
+The \alert{\texttt{grep}} command allows to search for files with lines matching a
+given pattern.  The syntax of the command is
+
+
+        \begin{lstlisting}
+grep [OPTIONS] pattern [file ... ]
+        \end{lstlisting}
+
+  Usage Examples
+}
+
+
+\vspace{0.1cm}
+{\scriptsize
+  \begin{columns}
+      \column{.4\textwidth}Print lines in file \texttt{/etc/group} including the string \texttt{alice}.
+      \column{.6\textwidth}
+        \begin{lstlisting}
+grep alice /etc/group
+        \end{lstlisting}
+    \end{columns}
+ \begin{columns}
+      \column{.4\textwidth}Print lines and line numbers in file \texttt{/etc/group} including the string \texttt{alice}.
+      \column{.6\textwidth}
+        \begin{lstlisting}
+grep -n alice /etc/group
+        \end{lstlisting}
+    \end{columns}
+ \begin{columns}
+      \column{.4\textwidth}Print lines and line numbers in file \texttt{/etc/group} starting with the string \texttt{alice}.
+      \column{.6\textwidth}
+        \begin{lstlisting}
+grep -c  ^alice /etc/group
+        \end{lstlisting}
+    \end{columns}
+ \begin{columns}
+      \column{.4\textwidth}Print number of lines in file \texttt{/etc/group} ending with the string \texttt{alice}.
+      \column{.6\textwidth}
+        \begin{lstlisting}
+grep -c alice$ /etc/group
+        \end{lstlisting} %$
+    \end{columns}
+}  
+  \end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module IV
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Comparing File Contents}
+  % ------------------------------------------------------
+
+  \vspace{-0.3cm}
+  \begin{block}{Using the \alert{\texttt{diff}} command}
+    {\footnotesize
+Frequently two human-readable files have to be compared to check the differences between them. This can be achieved with the command \alert{\texttt{diff}} that outputs the changes needed to bring one file to the other. The syntax of the command is
+
+
+        \begin{lstlisting}
+diff [OPTION]... FILES
+        \end{lstlisting}
+
+  Usage Examples
+}
+
+
+\vspace{0.1cm}
+{\scriptsize
+  Let's assume that user alice has edited her \texttt{.bashrc} file and want to check the differences with the original copy, prudently saved in file \texttt{mybashrc.bak}.
+        \begin{lstlisting}
+alice@platea:~$  diff .bashrc mybashrc.bak 
+5,6d4
+< # If not running interactively, don't do anything
+< [ -z "$PS1" ] && return
+20c18
+< # update the values of LINES and COLUMNS.
+---
+> # update the values of LINES and COLUMNS. Test.
+91,92d88
+< #alias la='ls -A'
+        \end{lstlisting}
+}
+  \end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module IV
+}
+}
+\end{frame}
