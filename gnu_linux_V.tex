@@ -90,25 +90,62 @@ Notes Module V
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t,fragile]{What is the private/public key approach?}
   % ------------------------------------------------------
-  \begin{block}{The \alert{private} and \alert{public} keys}
+  \begin{block}{Asymmetric Criptography}
     {\footnotesize
-Every digital certificate has a pair of associated cryptographic
-keys. This pair of keys consists of a \textbf{private} key and a \textbf{public} key. 
+\alert{Asymmetric cryptography} (AC) solves what has always been one of the biggest problems in cryptography: \emph{How can you send someone a coded message without having an opportunity to previously share the code with them?}. AC is based on a pair of associated cryptographic
+keys: a \alert{private} key and a \alert{public} key. 
 
 \vspace{0.25cm}
-A \textbf{public} key is part of the owner's digital certificate and \emph{it is available for anyone to use}. A \textbf{private} key, however, is protected by and \emph{available only to the owner of the key}. This limited access ensures that communications that use the key are kept secure.
+A \textbf{public} key is part of the owner's digital certificate and \emph{it is available for anyone to use}. A \textbf{private} key, however, is protected by and \emph{available only to the owner of the key}. This limited access ensures that communications are kept secure.
 
 \vspace{0.25cm}
-The owner of a certificate can use these keys to take advantage of the
-cryptographic security features that the keys provide. For example,
-the certificate owner can use a certificate's private key to ``sign''
+The owner of a certificate can use the keys to take advantage of the
+security features provided by AC. For example,
+he can use a certificate's private key to ``sign''
 and encrypt data sent between users and servers, such as messages,
 documents, and code objects. The recipient of the signed object can
-then use the public key contained in the signer's certificate to
+use the public key contained in the signer's certificate to
 decrypt the signature. Such digital signatures ensure the reliability
-of an object's origin and provide a means of checking the integrity of
-the object.
+of an object's origin providing a way of checking the object integrity.
 }
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+Symmetric-key algorithms have their own applications, such as encrypting data for personal use, or for when there are secure channels that the private keys can be shared over.
+
+
+Notes Module V
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Main Characters and Storyline}
+  % ------------------------------------------------------
+  \begin{block}{The development of the RSA asymmetryc cryptography}
+    {\footnotesize
+  \begin{columns}
+      \column{.75\textwidth}
+      \begin{itemize}
+      \item First developments in 1969 at the UK intelligence agency. 
+      \item James H. Ellis Ellis and Clifford Cock (RSA), and  Malcolm J. Williamson (D-H key exchange)
+      \item \alert{Classified} work. Publicly acknowledged in 1997.
+      \item Whitfield Diffie and Martin Hellman designed the \alert{Diffie-Hellman key exchange} in 1976.
+      \item  Ron Rivest, Adi Shamir and Leonard Adleman in MIT found a \alert{one-way function} that is the base of the RSA algorithm in 1977.
+      \item The idea was patented in 1983 by MIT, but only at the early days of the internet the RSA algorithm began to see widespread adoption.
+      \end{itemize}
+      \column{.25\textwidth}
+      \begin{center}
+        % \onslide*{2}{
+        % \includegraphics[angle=0,width=5cm]{./Figs/Diagram1.eps}}
+        % \onslide*{3}{
+        \includegraphics[angle=0,width=0.95\linewidth]{./Figs/content.jpeg}%}
+      \end{center}
+    \end{columns}
+      
+    }
   \end{block}
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,7 +157,49 @@ Notes Module V
 }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,fragile]{Example of the RSA algorithm}
+  % ------------------------------------------------------
+  \begin{block}{ RSA basis: difficult factorization of large integers}
+    {\footnotesize
+      The public key consists of two numbers where one is the product of \alert{two large prime numbers} (trapdoor function). The private key is derived from the same prime numbers. The larger the numbers the safer the key. Let's encrypt the number \texttt{4}.
+  \begin{columns}
+      \column{.6\textwidth}
+      \begin{itemize}
+      \item Select two primes, e.g.~ $P = 23$ and $Q = 67$ and $n=PQ$.
+        \item Carmichael's Totient function $L(n) = lcm(p-1,q-1)$
+        \item Modular inverse $d*e = 1~ mod~ L(n)$
+        \item Public key: $\{n, e\}$.
+        \item Private Key: $\{n, d\}$.
+        \item Ciphertext $c = m^e mod n$
+        \item Decrypt $m = c^d mod n$
+        \end{itemize}
+      \column{.4\textwidth}
+{\scriptsize
+  \begin{lstlisting}
+    m = 4
+    n = 1541.
+    L(1541) = 748
+    e = 53, d = 137
+    Public key (1541, 53)
+    Private key (1541, 137)
+    c = 542
+    m = 4
+  \end{lstlisting}
+}
+    \end{columns}
+      
+    }
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module V
+}
+}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -136,31 +215,39 @@ Notes Module V
   % ------------------------------------------------------
   \begin{block}{Fundamentals of the \alert{\texttt{ssh}} command}
     {\footnotesize
- The command \alert{\texttt{ssh}} is a powerful tool that allows the remote login in systems. After login with \texttt{\alert{ssh}} we can interact with the remote system via the \texttt{bash} shell as we do in the local system. 
+      The command \alert{\texttt{ssh}} is a powerful tool that allows to login in  remote systema and use \texttt{bash} as we do in the local system.  Let's imagine that we are username \texttt{\alert{bob}} in a local system with hostname \texttt{\alert{HAL}} and we want to log into a remote system \texttt{\alert{EARTH}} with username \texttt{\alert{bobby}}. 
+    }
+    \vspace{0.2cm}
+    \begin{columns}
+    
+      \column{.6\textwidth}
+      {\scriptsize
+        \begin{itemize}
+          \item The server \texttt{\alert{EARTH}} provides its \alert{public} host(s) key(s) and client checks whether this was the intended host and keeps a cache copy.
+        
+        \item The client \texttt{\alert{HAL}} then generates a \alert{random key}, encrypted with  the public key(s) sent from the server, and sends back this encrypted key. The server unencrypts the key with its own private host key.
 
- Let's imagine that we are currently working as username \texttt{\alert{bob}} in a local system with hostname \texttt{\alert{HAL}} and we want to log into a different system whose hostname is \texttt{\alert{EARTH}} and where our hostname is \texttt{\alert{bobby}}. 
-
-  \begin{columns}
-      \column{.5\textwidth}
-The  \texttt{ssh} program allows to work remotely in a safe way encrypting the data using a \emph{public/private keypair}.
-      \column{.5\textwidth}
-\begin{center}
-% \onslide*{2}{
-% \includegraphics[angle=0,width=5cm]{./Figs/Diagram1.eps}}
-%\onslide*{3}{
-\includegraphics[angle=0,width=5cm]{./Figs/Diagram2.eps}%}
-\end{center}
-\end{columns}
-}
+        \item Now both sides have a \alert{common key} unknown to anyone else, which will be used to encrypt the rest of the traffic in the session.
+        \end{itemize}
+       \phantom{ ..}
+      }
+      \column{.4\textwidth}
+      \begin{center}
+      % \onslide*{2}{
+      % \includegraphics[angle=0,width=5cm]{./Figs/Diagram1.eps}}
+      % \onslide*{3}{
+        \includegraphics[angle=0,width=\linewidth]{./Figs/Diagram2.eps}%}
+      \end{center}
+    \end{columns}
   \end{block}
   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\note{
-{\tiny
-
-Notes Module V
-}
-}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \note{
+    {\tiny
+      
+      Notes Module V
+    }
+  }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
