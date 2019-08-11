@@ -66,7 +66,7 @@
     {\footnotesize
  Each of the tasks that a \texttt{UNIX} computer is processing
   at any moment is associated to what is called a \alert{process}
-  with a unique \alert{PID} (process identification number).
+  with a unique \alert{PID} (Process IDentifier).
 
   The \texttt{ps} command displays current system processes. 
 
@@ -76,8 +76,10 @@
 
   \begin{columns}
       \column{.44\textwidth}The bareword \texttt{ps} command only displays the 
-  processes associated to a particular session (discussed
+  processes associated to a session (discussed
   on next topic).
+
+  Once a process is launched you can only pause or terminate it.
       \column{.56\textwidth}
         \hspace{-3cm}
 %      {\scriptsize
@@ -98,7 +100,7 @@ alice@platea:~$
       The \alert{\texttt{ps}} command has many options (see
   \texttt{man ps}). To
   obtain a list in a long format of all the existing processes or
-  tasks the appropriate options are \alert{texttt{ps -aux}}. An alternative way
+  tasks the appropriate options are \alert{\texttt{ps -aux}}. An alternative way
   of presenting process information is accomplished with the command
   \texttt{pstree} that emphasizes the relation among processes.
 }
@@ -122,13 +124,12 @@ Notes Module III
     {\footnotesize
     If a program (e.g.\ a text editor) is launched from a console, the
 console is inactive until the program finishes. This can be avoided if
-the program is backgrounded, adding the ampersand character at the end
+the program is backgrounded, adding the \alert{\texttt{\&}} character at the end
 of its activation statement.
 
 
       \begin{lstlisting}
 alice@platea:~$  emacs filedit.txt &
-alice@platea:~$ 
       \end{lstlisting}
  
 }
@@ -139,7 +140,8 @@ alice@platea:~$
       stopped and backgrounded. The conventional stop key combination
       is \alert{\texttt{CTRL-Z}}
       and, once stopped, the program is
-      backgrounded with the \alert{\texttt{bg}} command.
+      backgrounded with the \alert{\texttt{bg}} command.  The command
+      \alert{\texttt{jobs}} gives a list of backgrounded processes in a session.
       \column{.56\textwidth}
         \hspace{-3cm}
 %      {\scriptsize
@@ -157,8 +159,8 @@ alice@platea:~$
     \end{columns}
   }
       {\footnotesize
- The command
-      \alert{\texttt{jobs}} gives a list of backgrounded processes in a session.}
+In bash \alert{\texttt{\&}} is a command separator,  as  \alert{\texttt{;}}, but you can't use them simultaneously. 
+}
   \end{block}
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -174,7 +176,7 @@ Notes Module III
 \begin{frame}[t,fragile]{Killing processes}{\emph{Thou know'st 'tis common; all that lives must die...}, WS, Hamlet.}
   % ------------------------------------------------------
 
-
+\vspace{-0.25cm}
   \begin{block}{Sending signals to processes with  \alert{\texttt{kill}}}
     {\footnotesize
 The \alert{\texttt{kill}} command is intended, in general, to control
@@ -220,6 +222,66 @@ alice@platea:~$ kill 6254
 \note{
 {\tiny
 
+Notes Module III
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Useful process signals}{Using the  \alert{\texttt{kill}} command}
+  % ------------------------------------------------------
+  \vspace{-0.35cm}
+  \begin{block}{}
+    {\footnotesize
+You can check if you can send a signal to a process with the flag \alert{\texttt{-0}} and list the possible flags with \alert{\texttt{-L}} option.}
+{\scriptsize
+      \begin{lstlisting}
+$ kill -0 1
+bash: kill: (1) - Operation not permitted
+$ kill -L
+ 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL
+      \end{lstlisting}
+} 
+
+{\scriptsize
+
+  \begin{columns}
+      \column{.4\textwidth} We are using in this example the \alert{\texttt{-19} (\texttt{SIGSTOP})}, \alert{\texttt{-18} (\texttt{SIGCONT})}, and \alert{\texttt{-15} (\texttt{SIGTERM})} signals. Another useful (though drastic) signal is \alert{\texttt{-9} (\texttt{SIGKILL})}.  
+      \column{.6\textwidth}
+        \hspace{-3cm}
+%      {\scriptsize
+        \begin{lstlisting}
+$ ps
+  PID TTY          TIME CMD
+ 1180 pts/0    00:00:00 bash
+22898 pts/0    00:00:00 sleep
+22913 pts/0    00:00:00 ps
+$ kill -19 22898
+[1]+  Stopped                 sleep 400 &
+$ kill -18 22898
+$ jobs
+[1]   Running                 sleep 400 &
+$ kill -15 22898
+[1]+  Terminated              sleep 400 &
+        \end{lstlisting}
+%      }
+    \end{columns}
+  }
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+  If you want to run something in the background and then log out being able to reconnect later, use \alert{screen} (or \alert{tmux}). You can even attach multiple times, and each attached terminal will see (and control) the same thing.
+  
+The traditional approach still works: \texttt{nohup something \&}
+
+Bash also has a \texttt{disown} command, if you want to log out with a background job running, and you forgot to nohup it initially.
+
+\texttt{sleep 1000 [Ctrl-Z] bg disown}
+
+   If you need to logout of an ssh session with background jobs still running, make sure their file descriptors have been redirected so they aren't holding the terminal open, or the ssh client may hang.
+   
 Notes Module III
 }
 }

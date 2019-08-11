@@ -322,20 +322,20 @@ Notes Module I
   
   \begin{block}{ \alert{\texttt{pwd}}: print working directory absolute path}
     
-      {\footnotesize  This command helps the user to locate its current directory. A correct \texttt{bash} prompt definition makes it rarely needed.}
+      {\footnotesize  This command helps the user to locate its current directory. A correct \texttt{bash} prompt definition makes it rarely needed.
 
+      In bash you can use \alert{\texttt{;}} as a command separator as follows}
+      
     {\scriptsize
       \begin{lstlisting}
-alice@platea:~$ cd /usr/lib
-alice@platea:/usr/lib$ pwd
+alice@platea:~$ cd /usr/lib; pwd
 /usr/lib
-alice@platea:/usr/lib$ cd
-alice@platea:~$ pwd
+alice@platea:/usr/lib$ cd; pwd; cd ../../usr/local
 /home/alice
-alice@platea:~$ cd ../../usr/local
 alice@platea:/usr/local$ 
       \end{lstlisting}
-}
+
+    }
 
     {\footnotesize
 Note that the command \texttt{cd} without arguments is a shortcut for
