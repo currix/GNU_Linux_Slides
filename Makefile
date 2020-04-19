@@ -1,7 +1,7 @@
 LATEX = pdflatex
 PREFIX = gnu_linux
 #
-# Default Chapter. Invoke as "make directive CHAPTER=X" to compile other chapters
+# Default Chapter. Invoke as "make CHAPTER=X" to compile other chapters
 CHAPTER = III
 #
 .PHONY:	all clean
