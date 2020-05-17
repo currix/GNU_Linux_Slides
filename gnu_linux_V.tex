@@ -608,12 +608,11 @@ Notes Module V
     \item \alert{Ignoring} files: \texttt{.gitignore}
       \begin{lstlisting}
         $ cat .gitignore
-        # Created by Currix
         *.aux
         *.log
         *~
        \end{lstlisting}
-      
+       % $      
       \end{itemize}
     }
     \column{.25\textwidth}
@@ -631,9 +630,9 @@ Notes Module V
     }
   }
 \end{frame}
-%$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\begin{frame}[t,fragile]{Git Most Common Commands}
+\begin{frame}[t,fragile]{Git Most Common Commands: \alert{\texttt{git status}}}
   % ------------------------------------------------------
       \begin{block}{\alert{\texttt{git status}}: Display project status}
           {\scriptsize 
@@ -655,10 +654,11 @@ Untracked files:
 	Figs/Diagram1.dia
 
 \end{lstlisting}
+%$
 }      
 \end{block}  
   
-  %$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
   \note{
     {\tiny
       
@@ -667,3 +667,116 @@ Untracked files:
   }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,fragile]{Git Most Common Commands : \alert{\texttt{git add/reset}}}
+  % ------------------------------------------------------
+      \begin{block}{\alert{\texttt{git add} \emph{file(s)}}: Send file(s) to the \alert{staging} area}
+          {\scriptsize 
+          \begin{lstlisting}
+$ git add gnu_linux_V.tex 
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+	modified:   gnu_linux_V.tex
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Figs/Diagram1-eps-converted-to.pdf
+	Figs/Diagram1.dia
+\end{lstlisting}
+%
+}
+\alert{\texttt{git reset} \emph{[file(s)]}}: removes files from staging area and send them back to working area.
+
+\end{block}  
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \note{
+    {\tiny
+      
+      Notes Module V
+    }
+  }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,fragile]{Git Most Common Commands : \alert{\texttt{git commit}}}
+  % ------------------------------------------------------
+  \begin{block}{\alert{\texttt{git commit}}: Create a new commit in the repository. }
+      \begin{itemize}
+      \item  {\footnotesize The commit includes all changes saved in the \alert{staging area}.
+      \begin{lstlisting}
+$ git commit 
+[master c1fbce5] Test commit. 	modified:   gnu_linux_V.tex
+1 file changed, 37 insertions(+)
+      \end{lstlisting}
+      % $
+    }
+      \end{itemize}
+
+  \begin{columns}
+    \column{.5\textwidth}
+      \begin{itemize}
+  \item  {\scriptsize Every commit \alert{must} have a message.
+      }
+  \item  {\scriptsize Commit often and verbosely.
+      }
+  \item  {\scriptsize Every commit has a unique identifier.
+      }
+  \item  {\scriptsize Option \texttt{-m}: inline statement message. 
+      }
+      \end{itemize}
+    \column{.5\textwidth}
+    \begin{center}
+      \includegraphics[angle=0,width=0.9\textwidth]{./Figs/git_commit.png}%}
+    \end{center}
+  \end{columns}
+  
+}      
+\end{block}  
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \note{
+    {\tiny
+      
+      Notes Module V
+    }
+  }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,fragile]{Git Most Common Commands : \alert{\texttt{git diff}}}
+  % ------------------------------------------------------
+      \begin{block}{\alert{\texttt{git diff [--staged]} \emph{[file(s)]}}: Show changes}
+        {\scriptsize
+          By default it shows changes between \alert{working} and \alert{staging} areas. If no change is staged, show differences wrt \alert{repository} area.
+          \begin{lstlisting}
+$ git diff
+diff --git a/gnu_linux_V.tex b/gnu_linux_V.tex
+index 1c85e18..49af047 100644
+--- a/gnu_linux_V.tex
++++ b/gnu_linux_V.tex
+@@ -608,12 +608,11 @@ Notes Module V
+...
+\end{lstlisting}
+%$
+The option \alert{\texttt{--staged}} show differences between staged and repository contents.
+
+Differences between the index and a tree, between two trees, between two blob objects, or between two files on disk can also be shown.}      
+\end{block}  
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \note{
+    {\tiny
+      
+      Notes Module V
+    }
+  }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
