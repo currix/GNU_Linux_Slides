@@ -6,7 +6,7 @@
 \begin{frame}[t,fragile]{Adding an user to the system}
   % ------------------------------------------------------
 
-
+\vspace{-0.4cm}
   \begin{block}{Adding users with the \alert{\texttt{adduser}} command}
     {\footnotesize
 Easy way to add users to the system with a console interactive application. \\Syntax is \alert{\texttt{adduser} \emph{username}} and the new user's password is defined on the fly.}
@@ -24,11 +24,10 @@ Enter the new value, or press ENTER for the default
 	Full Name []: Bobby Doe
 ........
 Is the information correct? [Y/n] y
-$ 
   \end{lstlisting}
 }
     {\footnotesize
-If the new user is expected to have administration privileges (e.g.\ use of \texttt{sudo})  it has to be added to the \texttt{admin} group. This can be done with the command \\\alert{\texttt{adduser } \emph{username} \texttt{sudo}}.}
+If the new user is expected to have administration privileges (e.g.\ use of \texttt{sudo})  it has to be added to the \texttt{admin} group. This can be done with the commands \\ \alert{\texttt{usermod -aG sudo}} \emph{username} or \alert{\texttt{adduser } \emph{username} \texttt{sudo}}.}
 
   \end{block}
   
@@ -352,91 +351,6 @@ Notes Module V
 }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\section{Secure Copy Within Remote Systems}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[t,fragile]{Secure file transfer to remote systems}
-  % ------------------------------------------------------
-  \begin{block}{Fundamentals of the \alert{\texttt{scp}} command}
-    {\footnotesize
-      The command \alert{\texttt{scp}}  allows to copy in a secure way files to and from remote systems. Let's imagine that we are currently working as username \texttt{\alert{bob}} in a local system with hostname \texttt{HAL} and we want to transfer some files to a different system whose hostname is \texttt{EARTH} and where our hostname is \texttt{\alert{bobby}}.  
-
-  \begin{columns}
-      \column{.5\textwidth}\texttt{\alert{scp}} allows to work remotely in a safe way encrypting the data using a \alert{public/private keypair}.
-
-      \column{.5\textwidth}
-\begin{center}
-% \onslide*{2}{
-% \includegraphics[angle=0,width=5cm]{./Figs/Diagram1.eps}}
-%\onslide*{3}{
-\includegraphics[angle=0,width=5cm]{./Figs/Diagram4.eps}%}
-\end{center}
-\end{columns}
-}
-  \end{block}
-  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\note{
-{\tiny
-
-Notes Module V
-}
-}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\begin{frame}[t,fragile]{Using \alert{\texttt{scp}} for secure file transfer}
-  % ------------------------------------------------------
-
-
-  \begin{block}{Command syntax: \alert{\texttt{scp} \emph{user1}@\emph{host1:file1}  \emph{user2}@\emph{host2:[file2|dir2]}}}
-    {\footnotesize  To transfer from \texttt{hal} to \texttt{earth} the files in the example the syntax is}
-{\scriptsize
-  \begin{lstlisting}
-bob@hal:~$ scp thingy/file_1.eps     bobby@earth:thdir
-Password: 
-file_1.eps  100%  581     0.6KB/s   00:00    
-bob@hal:~$ scp thingy/file_2.eps     bobby@earth:thdir
-Password: 
-file_2.eps  100%  581     0.6KB/s   00:00    
-  \end{lstlisting}
-}
-
-{\footnotesize\textbf{(a)}  We have assumed that the remote directory \texttt{thdir} exists. In case it does not exist use the \alert{\texttt{-r}} option. This option also allows the recursive copy of folders and its contents.\\
-\textbf{(b)} Wildcards and globbing works in the same way as with the usual \texttt{cp} command.
-}
-
-  \end{block}
-  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\note{
-{\tiny
-
-Notes Module V
-}
-}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\section{Silent Authentication}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t,fragile]{Using silent authentication with \alert{\texttt{ssh}} \textbf{(A)}}
   % ------------------------------------------------------
@@ -524,6 +438,195 @@ bobby@earth:~$  ssh-keygen -R hal
 Notes Module V
 }
 }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{Secure Copy Within Remote Systems}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Secure file transfer to remote systems}
+  % ------------------------------------------------------
+  \begin{block}{Fundamentals of the \alert{\texttt{scp}} command}
+    {\footnotesize
+      The command \alert{\texttt{scp}}  allows to copy in a secure way files to and from remote systems. Let's imagine that we are currently working as username \texttt{\alert{bob}} in a local system with hostname \texttt{HAL} and we want to transfer some files to a different system whose hostname is \texttt{EARTH} and where our hostname is \texttt{\alert{bobby}}.  
+
+  \begin{columns}
+      \column{.5\textwidth}\texttt{\alert{scp}} allows to work remotely in a safe way encrypting the data using a \alert{public/private keypair}.
+
+      \column{.5\textwidth}
+\begin{center}
+% \onslide*{2}{
+% \includegraphics[angle=0,width=5cm]{./Figs/Diagram1.eps}}
+%\onslide*{3}{
+\includegraphics[angle=0,width=5cm]{./Figs/Diagram4.eps}%}
+\end{center}
+\end{columns}
+}
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module V
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,fragile]{Using \alert{\texttt{scp}} for secure file transfer}
+  % ------------------------------------------------------
+
+
+  \begin{block}{Command syntax: \alert{\texttt{scp} \emph{user1}@\emph{host1:file1}  \emph{user2}@\emph{host2:[file2|dir2]}}}
+    {\footnotesize  To transfer from \texttt{hal} to \texttt{earth} the files in the example the syntax is}
+{\scriptsize
+  \begin{lstlisting}
+bob@hal:~$ scp thingy/file_1.eps     bobby@earth:thdir
+Password: 
+file_1.eps  100%  581     0.6KB/s   00:00    
+bob@hal:~$ scp thingy/file_2.eps     bobby@earth:thdir
+Password: 
+file_2.eps  100%  581     0.6KB/s   00:00    
+  \end{lstlisting}
+}
+
+{\footnotesize\textbf{(a)}  We have assumed that the remote directory \texttt{thdir} exists. In case it does not exist use the \alert{\texttt{-r}} option. This option also allows the recursive copy of folders and its contents.\\
+\textbf{(b)} Wildcards and globbing works in the same way as with the usual \texttt{cp} command.
+}
+
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+Notes Module V
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{A (Very Basic) Primer on git}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,fragile]{What the heck is a \alert{Version Control System}?}
+  % ------------------------------------------------------
+  \begin{block}{Version Control System}
+    {\footnotesize
+      Provides an automatic way to \textbf{track changes} in software (or any other) projects and \textbf{collaborate} easily and conveniently with others. Gives the power to \textbf{recover or view previous versions} of files and directories without tampering with the main development. Helps to securely \textbf{backup} the project and its history.
+
+      Examples: \texttt{RCS}, \texttt{CVS}, and \texttt{Subversion}; current alternatives, including \texttt{Perforce}, \texttt{Bazaar}, \texttt{Mercurial}, and... \texttt{Git}.}
+  \end{block}
+
+  \begin{block}{The GIT Version Control System}
+    {\footnotesize
+    Developed by GNU/Linux creator \emph{Linus Torvalds} to host the Linux kernel. \texttt{Git} is a \textbf{\emph{command-line} distributed VCS} that is designed in the Unix tradition with a combination of power, speed, and community adoption. The set of commands needed to be productive is relatively small; though mastering \texttt{Git} can be quite complex. We focus on the essential commands.
+ }
+  \end{block}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+{\tiny
+
+
+Notes Module V
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{The Git Ecosystem}
+  \vspace{-0.7cm}
+  % ------------------------------------------------------
+  \begin{columns}
+      \column{.25\textwidth}
+      \begin{center}
+        \includegraphics[angle=0,width=\linewidth]{./Figs/git_0.png}
+      \end{center}
+      \column{.75\textwidth}
+      \begin{center}
+        \includegraphics[angle=0,width=0.8\linewidth]{./Figs/git_scheme.png}
+      \end{center}
+    \end{columns}
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \note{
+    {\tiny
+      
+      Notes Module V
+    }
+  }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,fragile]{Git Configuration and Starting a Git project}
+  % ------------------------------------------------------
+%  {\small
+    \alert{Global configuration} (only once).
+    \begin{lstlisting}
+      $ git config --global user.name "Bob Mc User"
+      $ git config --global user.emil "bob@uhu.es"
+    \end{lstlisting}%}
+
+  \begin{columns}
+    \column{.75\textwidth}
+    {\scriptsize
+      \begin{itemize}
+      \item \alert{Starting} a project in a \alert{local} repository
+      \begin{lstlisting}
+        $ git init [project name]
+      \end{lstlisting}
+
+      If the argument is given, creates a folder with this name and the project inside. Otherwise creates the project in the current folder.
+      
+      \item \alert{Starting} a project from a \alert{remote} repository
+      \begin{lstlisting}
+        $ git clone [project URL]
+      \end{lstlisting}
+    \item \alert{Ignoring} files: \texttt{.gitignore}
+      \begin{lstlisting}
+        $ cat .gitignore
+        # Created by Currix
+        *.aux
+        *.log
+        *~
+       \end{lstlisting}
+      
+      \end{itemize}
+    }
+    \column{.25\textwidth}
+    \begin{center}
+      \includegraphics[angle=0,width=\textwidth]{./Figs/git.png}%}
+    \end{center}
+  \end{columns}
+  
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \note{
+    {\tiny
+      
+      Notes Module V
+    }
+  }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
