@@ -746,8 +746,7 @@ $ git commit
     }
   }
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
- 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{frame}[t,fragile]{Git Most Common Commands : \alert{\texttt{git diff}}}
@@ -779,4 +778,123 @@ Differences between the index and a tree, between two trees, between two blob ob
   }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,fragile]{Git Most Common Commands : \alert{\texttt{git log}}}
+  % ------------------------------------------------------
+      \begin{block}{\alert{\texttt{git log [-n \emph{count}]}}} List history of current branch. }
+        {\scriptsize
+          The option \texttt{-n \emph{count}} limits the list to the last \emph{n} commits. 
+          \begin{lstlisting}
+$ git log -n 1
+commit 73f235c202932583db254eaf8212b7 (HEAD -> master, origin/master)
+Author: Curro Perez-Bernal <currix@gmail.com>
+Date:   Mon May 18 00:43:30 2020 +0200
+
+    Added some git slides: diff add/reset commit
+            modified:   gnu_linux_V.tex
+\end{lstlisting}
+%$
+\begin{itemize}
+  \item A convenient way to get an overview of the project is with  the command
+
+\texttt{git log --oneline --graph --decorate}
+
+          \begin{lstlisting}
+$ git log --oneline --graph --decorate
+* 73f235c (HEAD -> master, origin/master) Added some git slides: \
+diff add/reset commit  modified:   gnu_linux_V.tex
+* c1fbce5 Test commit.  modified:   gnu_linux_V.tex
+* 1994bf9 Typos in user add and silent login added to ssh.
+* 26fad37 Changes to update to 2020 course.
+\end{lstlisting}
+%$
+\end{itemize}
+}
+\end{block}  
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \note{
+    {\tiny
+      
+      Notes Module V
+    }
+  }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,fragile]{Git Most Common Commands : \alert{\texttt{git checkout}}}
+  % ------------------------------------------------------
+      \begin{block}{\alert{\texttt{git checkout {-}{-}} \emph{[file(s)]}}: Discard changes in working area}
+        {\scriptsize
+          Discard changes in \alert{working} area and recover file or files in \alert{repository} area. 
+          \begin{lstlisting}
+$ ls -l gnu_linux_IV.tex
+-rw-r--r-- 1 curro curro 20219 May 18 12:00 gnu_linux_IV.tex
+$ git checkout -- gnu_linux_IV.tex
+$ ls -l gnu_linux_IV.tex
+-rw-r--r-- 1 curro curro 20531 May 18 12:00 gnu_linux_IV.tex
+\end{lstlisting}
+%$
+\begin{itemize}
+  \item Notice that this operation is  \alert{unrecoverable}.
+
+\item The \texttt{--} option is to avoid conflicts between paths and options.
+
+\item You can also chose to check out files from a particular commit:
+
+\texttt{git checkout c1fbce52 {-}{-} gnu\_linux\_IV.tex}.
+\end{itemize}
+}      
+\end{block}  
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \note{
+    {\tiny
+      
+      Notes Module V
+    }
+  }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[t,fragile]{Git Most Common Commands : \alert{\texttt{git push}} and \alert{\texttt{git pull}}}
+  % ------------------------------------------------------
+      \begin{block}{Commands for \emph{remote repository synchronization}}
+        {\scriptsize
+\begin{itemize}
+  \item          The command  \alert{\texttt{git push [remote]}} pushes local changes to the remote repository.
+          \begin{lstlisting}
+$ git push
+
+\end{lstlisting}
+%$
+  \item  The command  \alert{\texttt{git pull [remote]}} fetches changes from the remote repository to the local repository, merging the current branch with its upstreams.
+
+          \begin{lstlisting}
+$ git log --oneline --graph --decorate
+* 73f235c (HEAD -> master, origin/master) Added some git slides: \
+diff add/reset commit  modified:   gnu_linux_V.tex
+* c1fbce5 Test commit.  modified:   gnu_linux_V.tex
+* 1994bf9 Typos in user add and silent login added to ssh.
+* 26fad37 Changes to update to 2020 course.
+\end{lstlisting}
+%$
+\end{itemize}
+}
+\end{block}  
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \note{
+    {\tiny
+      
+      Notes Module V
+    }
+  }
+\end{frame}
