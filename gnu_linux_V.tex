@@ -784,7 +784,7 @@ Differences between the index and a tree, between two trees, between two blob ob
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{frame}[t,fragile]{Git Most Common Commands : \alert{\texttt{git log}}}
   % ------------------------------------------------------
-      \begin{block}{\alert{\texttt{git log [-n \emph{count}]}}} List history of current branch. }
+      \begin{block}{\alert{\texttt{git log [-n \emph{count}]}}: List history of current branch}
         {\scriptsize
           The option \texttt{-n \emph{count}} limits the list to the last \emph{n} commits. 
           \begin{lstlisting}
@@ -872,18 +872,21 @@ $ ls -l gnu_linux_IV.tex
   \item          The command  \alert{\texttt{git push [remote]}} pushes local changes to the remote repository.
           \begin{lstlisting}
 $ git push
-
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.35 KiB | 460.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/currix/GNU_Linux_Slides.git
+   73f235c..9802fe4  master -> master
 \end{lstlisting}
 %$
   \item  The command  \alert{\texttt{git pull [remote]}} fetches changes from the remote repository to the local repository, merging the current branch with its upstreams.
-
           \begin{lstlisting}
-$ git log --oneline --graph --decorate
-* 73f235c (HEAD -> master, origin/master) Added some git slides: \
-diff add/reset commit  modified:   gnu_linux_V.tex
-* c1fbce5 Test commit.  modified:   gnu_linux_V.tex
-* 1994bf9 Typos in user add and silent login added to ssh.
-* 26fad37 Changes to update to 2020 course.
+$ git pull
+Already up to date.
 \end{lstlisting}
 %$
 \end{itemize}
