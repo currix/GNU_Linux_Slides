@@ -6,26 +6,26 @@
 \begin{frame}[t,fragile]{Adding an user to the system}
   % ------------------------------------------------------
 
-\vspace{-0.4cm}
+  \vspace{-0.4cm}
   \begin{block}{Adding users with the \alert{\texttt{adduser}} command}
     {\footnotesize
-Easy way to add users to the system with a console interactive application. \\Syntax is \alert{\texttt{adduser} \emph{username}} and the new user's password is defined on the fly.}
-
-{\scriptsize
-  \begin{lstlisting}
-$ sudo adduser bobby
-[sudo] password for alice: 
-...
-Enter new UNIX password: 
-Retype new UNIX password: 
-passwd: password updated successfully
-Changing the user information for bobby
-Enter the new value, or press ENTER for the default
+      Easy way to add users to the system with a console interactive application. \\Syntax is \alert{\texttt{adduser} \emph{username}} and the new user's password is defined on the fly.}
+    
+    {\scriptsize
+      \begin{lstlisting}
+        $ sudo adduser bobby
+        [sudo] password for alice: 
+        ...
+        Enter new UNIX password: 
+        Retype new UNIX password: 
+        passwd: password updated successfully
+        Changing the user information for bobby
+        Enter the new value, or press ENTER for the default
 	Full Name []: Bobby Doe
-........
-Is the information correct? [Y/n] y
-  \end{lstlisting}
-}
+        ........
+        Is the information correct? [Y/n] y
+      \end{lstlisting}
+    }
     {\footnotesize
 If the new user is expected to have administration privileges (e.g.\ use of \texttt{sudo})  it has to be added to the \texttt{admin} group. This can be done with the commands \\ \alert{\texttt{usermod -aG sudo}} \emph{username} or \alert{\texttt{adduser } \emph{username} \texttt{sudo}}.}
 
@@ -707,14 +707,14 @@ Untracked files:
   % ------------------------------------------------------
   \begin{block}{\alert{\texttt{git commit}}: Create a new commit in the repository. }
       \begin{itemize}
-      \item  {\footnotesize The commit includes all changes saved in the \alert{staging area}.
+      \item  {\footnotesize The commit includes all changes saved in the \alert{staging area}.}
+%        {\footnotesize
       \begin{lstlisting}
 $ git commit 
 [master c1fbce5] Test commit. 	modified:   gnu_linux_V.tex
 1 file changed, 37 insertions(+)
       \end{lstlisting}
-      % $
-    }
+%    }
       \end{itemize}
 
   \begin{columns}
@@ -731,11 +731,11 @@ $ git commit
       \end{itemize}
     \column{.5\textwidth}
     \begin{center}
-      \includegraphics[angle=0,width=0.9\textwidth]{./Figs/git_commit.png}%}
+      \includegraphics[angle=0,width=0.9\textwidth]{./Figs/git_commit.png}
     \end{center}
   \end{columns}
   
-}      
+%}      
 \end{block}  
   
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
